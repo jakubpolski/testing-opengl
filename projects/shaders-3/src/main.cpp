@@ -1,5 +1,4 @@
-#include "simpler_renderer.cpp"
-#include "shader.h"
+#include "simpler_renderer.h"
 
 using namespace std;
 
@@ -11,7 +10,7 @@ int main() {
         return -1;
 
     float vertices[] = {
-    //      passing this vertice as a color clamps it to (0.0f, 0.0f, 0.0f) as color values are in 0.0f - 1.0f range
+    //      passing this vertice as a color clamps it to (0.0f, 0.0f, 0.0f) as color values are in (0.0f - 1.0f) range
     //          |
     //          v
         -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,

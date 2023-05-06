@@ -3,5 +3,4 @@ project(hello-square VERSION 0.1.0)
 
 add_executable(hello-square
     "src/main.cpp"
-    "src/glad.c"
 )

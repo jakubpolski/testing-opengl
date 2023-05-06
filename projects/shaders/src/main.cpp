@@ -1,5 +1,4 @@
-#include "simpler_renderer.cpp"
-#include "shader.h"
+#include "simpler_renderer.h"
 
 using namespace std;
 
