@@ -1,5 +1,7 @@
 #include "simpler_renderer.h"
 #include <iostream>
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 using namespace std;
 
@@ -81,6 +83,31 @@ unsigned int createShaderProgram(unsigned int vertex_shader, unsigned int fragme
     }
 
     return shader_program;
+}
+
+unsigned int create2DTexture(const char* tex_path, int texture_number) {
+    if (texture_number < GL_TEXTURE0 || texture_number > GL_TEXTURE31) {
+        cout << "Invalid texture number" << endl;
+        return 0;
+    }
+
+
+    int width, height, nr_channels;
+    stbi_set_flip_vertically_on_load(true);
+    unsigned char *data = stbi_load(tex_path, &width, &height, &nr_channels, 0);
+
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glActiveTexture(texture_number);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    if (data) {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    } else {
+        cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
+    return texture;
 }
 
 Shader::Shader(const char* vertex_path, const char* fragment_path) {

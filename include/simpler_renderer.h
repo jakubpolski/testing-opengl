@@ -13,6 +13,7 @@ void processInput(GLFWwindow* window);
 GLFWwindow* createWindow(int width, int height, const char* title);
 unsigned int compileShader(const char* source, int type);
 unsigned int createShaderProgram(unsigned int vertex_shader, unsigned int fragment_shader);
+unsigned int create2DTexture(const char* tex_path, int texture_number);
 
 class Shader {
 public:
